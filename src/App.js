@@ -1,12 +1,27 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
+import AllSongs from  './APIs/AllSongs'
+import {connect} from 'react-redux'
+function App({getSongs}) {
 
-function App() {
+
+  useEffect(() => {
+      AllSongs().then(getSongs)
+  })
+
+
   return (
     <div className="App">
-     <h1>HI</h1>
     </div>
   );
 }
 
-export default App;
+
+const mapDispatchToProps = dispatch =>{
+  return{
+    getSongs: songs => dispatch({ type: "SET_SONGS", payload: {songs: songs}})
+  }
+}
+
+
+export default connect(null, mapDispatchToProps) (App)
