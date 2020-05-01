@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import './App.css';
 import AllSongs from  './APIs/AllSongs'
 import {connect} from 'react-redux'
+import Paperbase from './components/HomePage/Paperbase'
 function App({getSongs}) {
 
 
@@ -12,6 +13,8 @@ function App({getSongs}) {
 
   return (
     <div className="App">
+      <Paperbase/>
+
     </div>
   );
 }
