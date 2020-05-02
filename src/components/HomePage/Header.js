@@ -1,45 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import HelpIcon from '@material-ui/icons/Help';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
 import Link from '@material-ui/core/Link';
-import MenuIcon from '@material-ui/icons/Menu';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import Tab from '@material-ui/core/Tab';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Tabs from '@material-ui/core/Tabs';
 import Toolbar from '@material-ui/core/Toolbar';
-import Tooltip from '@material-ui/core/Tooltip';
-import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+import styles from './StyleComponent/HeaderStyle'
 
-const lightColor = 'rgba(255, 255, 255, 0.7)';
 
-const styles = (theme) => ({
-  secondaryBar: {
-    zIndex: 0,
-  },
-  menuButton: {
-    marginLeft: -theme.spacing(1),
-  },
-  iconButtonAvatar: {
-    padding: 4,
-  },
-  link: {
-    textDecoration: 'none',
-    color: lightColor,
-    '&:hover': {
-      color: theme.palette.common.white,
-    },
-  },
-  button: {
-    borderColor: lightColor,
-  },
-});
+
 
 function Header(props) {
   const { classes, onDrawerToggle } = props;
@@ -57,27 +30,18 @@ function Header(props) {
                   onClick={onDrawerToggle}
                   className={classes.menuButton}
                 >
-                  <MenuIcon />
+               
                 </IconButton>
               </Grid>
             </Hidden>
             <Grid item xs />
             <Grid item>
               <Link className={classes.link} href="#" variant="body2">
-                Go to docs
+               Log Out
               </Link>
             </Grid>
             <Grid item>
-              <Tooltip title="Alerts • No alerts">
-                <IconButton color="inherit">
-                  <NotificationsIcon />
-                </IconButton>
-              </Tooltip>
-            </Grid>
-            <Grid item>
-              <IconButton color="inherit" className={classes.iconButtonAvatar}>
-                <Avatar src="/static/images/avatar/1.jpg" alt="My Avatar" />
-              </IconButton>
+         < ExitToAppIcon />
             </Grid>
           </Grid>
         </Toolbar>
@@ -89,24 +53,7 @@ function Header(props) {
         position="static"
         elevation={0}
       >
-        <Toolbar>
-          <Grid container alignItems="center" spacing={1}>
-            <Grid item xs>
-              <Typography color="inherit" variant="h5" component="h1">
-                Authentication
-              </Typography>
-            </Grid>
-            <Grid item>
-             
-            </Grid>
-            <Grid item>
-              <Tooltip title="Help">
-                <IconButton color="inherit">  <HelpIcon />
-                </IconButton>
-              </Tooltip>
-            </Grid>
-          </Grid>
-        </Toolbar>
+      
       </AppBar>
       <AppBar
         component="div"
@@ -115,8 +62,9 @@ function Header(props) {
         position="static"
         elevation={0}
       >
+        {/* search bar here  */}
         <Tabs value={0} textColor="inherit">
-        
+      
         </Tabs>
       </AppBar>
     </React.Fragment>

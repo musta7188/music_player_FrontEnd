@@ -1,5 +1,6 @@
 const initialState = {
-  songs: []
+  songs: [],
+  playingSong: ""
 }
 
 
@@ -9,6 +10,11 @@ const reducer = (state = initialState, action) =>{
     return{
       ...state,
       songs: action.payload.songs
+    }
+  }else if(action.type === "PLAY_SONG"){
+    return{
+      ...state,
+      playingSong: action.payload.song.song_link
     }
   }
 
