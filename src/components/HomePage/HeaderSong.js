@@ -13,13 +13,16 @@ function HeaderSong ({playingSong}) {
     setSongToPlay(playingSong)
   }, [playingSong])
 
-
+////https://www.npmjs.com/package/react-h5-audio-player
 return( <AudioPlayer
+ 
     autoPlay
     src={songToPlay}
     onPlay={e => console.log("onPlay")}
    loop = {true}
-  />)
+  />
+
+  )
 }
 
 

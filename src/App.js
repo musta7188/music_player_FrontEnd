@@ -14,7 +14,6 @@ function App({getSongs}) {
   return (
     <div className="App">
       <HomePage/>
-
     </div>
   );
 }
