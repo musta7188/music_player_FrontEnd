@@ -7,7 +7,7 @@ import Header from "./Header";
 import { styles, drawerWidth, theme } from "./StyleComponent/HomePageStyle";
 import SongsContainer from '../AllSongsHomePage/SongsContainer'
 import PropTypes from 'prop-types';
-
+import HeaderSong from './HeaderSong'
 function HomePage(props) {
   const { classes } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -39,7 +39,7 @@ function HomePage(props) {
             <SongsContainer />
           </main>
           <footer className={classes.footer}>
- 
+           <HeaderSong/>
           </footer>
         </div>
       </div>

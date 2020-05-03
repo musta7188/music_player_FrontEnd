@@ -14,7 +14,7 @@ const reducer = (state = initialState, action) =>{
   }else if(action.type === "PLAY_SONG"){
     return{
       ...state,
-      playingSong: action.payload.song.song_link
+      playingSong: action.payload.link
     }
   }
 

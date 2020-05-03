@@ -12,22 +12,30 @@ import useStyles from './StyleContainerComponents/SongCardStyle'
 import {Howl, Howler } from 'howler'
 import ReactHowler from 'react-howler'
 import {connect} from 'react-redux'
-import StopIcon from '@material-ui/icons/Stop';
+import Slider from '@material-ui/core/Slider';
+import VolumeDown from '@material-ui/icons/VolumeDown';
+import VolumeUp from '@material-ui/icons/VolumeUp';import StopIcon from '@material-ui/icons/Stop';
+import Grid from '@material-ui/core/Grid';
+
+
  function SongCard({song, playingSong, songToPlay}) {
 
   const [play, setPlay] = useState(false)
 
-  const {Howl} = require('howler')
+
   
   const classes = useStyles();
   const theme = useTheme();
 
-
-
-  const handelPlay = (song) =>{
-    songToPlay(song)
-   console.log(playingSong)
+  ////method  set the play song state to true or false to render the right icon and if true send the the redux state the link of the song else send empty string
+  ////stopping  the song 
+  const handelPlay = () =>{
+    setPlay(!play)
+    songToPlay(play? song.song_link : "")
+   
   }
+
+
 
 
   return (
@@ -46,28 +54,32 @@ import StopIcon from '@material-ui/icons/Stop';
             {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
           </IconButton>
           <IconButton aria-label="play/pause">
-            {play? <StopIcon onClick={() => setPlay(!play) } />  : <PlayArrowIcon  onClick={() => setPlay(!play) }/> }
+            {playingSong === song.song_link? <StopIcon onClick={handelPlay } />  : <PlayArrowIcon  onClick={handelPlay } /> }
             
-            <ReactHowler src={song.song_link} playing={play}/>
-      
           </IconButton>
           <IconButton aria-label="next">
             {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon /> }
-          </IconButton>
+          </IconButton> 
         </div>
-      </div>
+      </div> 
+    
+
       <CardMedia
         className={classes.cover}
         image={song.album_img}
         title="Live from space album cover"
       />
+
+      
     </Card>
+
+    
   );
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    songToPlay: song => dispatch({type: "PLAY_SONG", payload: {song: song}})
+    songToPlay: link => dispatch({type: "PLAY_SONG", payload: {link: link}})
   }
 }
 
