@@ -7,6 +7,7 @@ import Signup from "./Signup";
 import AllSongs from "./APIs/AllSongs";
 import { connect } from "react-redux";
 import HomePage from "./components/HomePage/HomePage";
+
 class App extends React.Component {
   constructor() {
     super();
