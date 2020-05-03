@@ -4,47 +4,70 @@ import Login from "./Login";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import API from "./API";
 import Signup from "./Signup";
-
+import AllSongs from "./APIs/AllSongs";
+import { connect } from "react-redux";
+import HomePage from "./components/HomePage/HomePage";
 class App extends React.Component {
-	constructor() {
-		super();
-		this.state = {
-			username: null,
-		};
-	}
+  constructor() {
+    super();
+    this.state = {
+      username: null,
+    };
+  }
 
-	componentDidMount() {
-		if (localStorage.token) {
-			API.validate(localStorage.token)
-			.then((json) => this.LogIn(json.username, json.token));
-		}
-	}
+  componentDidMount() {
+    this.checkToken();
+    AllSongs().then(this.props.getSongs);
+  }
 
-	LogIn = (username, token) => {
-		this.setState({
-			username,
-		});
+  checkToken = () => {
+    if (localStorage.token) {
+      API.validate(localStorage.token).then((json) =>
+        this.LogIn(json.username, json.token)
+      );
+    }
+  };
 
-		localStorage.token = token;
-	};
+  LogIn = (username, token) => {
+    this.setState({
+      username,
+    });
 
-	render() {
-		return (
-			<div className="App">
-				
+    localStorage.token = token;
+  };
 
-      	<Router>
-					<Route exact path="/sign-up" component={() => <Signup />} />
-          
-					<Route
-						exact
-						path="/log-in"
-						component={() => <Login LogIn={this.LogIn} />}
-					/>
-				</Router>
-			</div>
-		);
-	}
+  render() {
+
+    const {username} = this.state
+    return (
+      <div className="App">
+        {
+        username 
+        ? 
+        <HomePage/> 
+        : 
+        <Router>
+        <Route exact path="/sign-up" component={() => <Signup />} />
+        <Route
+          exact
+          path="/log-in"
+          component={() => <Login LogIn={this.LogIn} />}
+        /> 
+       </Router>
+        }
+
+    
+       
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getSongs: (songs) =>
+      dispatch({ type: "SET_SONGS", payload: { songs: songs } }),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(App);
