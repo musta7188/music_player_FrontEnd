@@ -9,7 +9,7 @@ import SongsContainer from '../AllSongsHomePage/SongsContainer'
 import PropTypes from 'prop-types';
 import HeaderSong from './HeaderSong'
 function HomePage(props) {
-  const { classes } = props;
+  const { classes, logOut } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
@@ -34,7 +34,7 @@ function HomePage(props) {
           </Hidden>
         </nav>
         <div className={classes.app}>
-          <Header onDrawerToggle={handleDrawerToggle} />
+          <Header logOut={logOut} onDrawerToggle={handleDrawerToggle} />
           <main className={classes.main}>
             <SongsContainer />
           </main>

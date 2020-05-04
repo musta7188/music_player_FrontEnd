@@ -27,15 +27,15 @@ const validate = token => {
 }
 
 
-const LogIn = data => {
+const logIn = data => {
   return post(logInURL, data).then(response => response.json())
   
 }
 
-const SignUp = data => {
+const signUp = data => {
     return post(createUserURL, data).then(response => response.json())
 }
 
 
 
-export default { LogIn, validate, SignUp }
+export default { logIn, validate, signUp }

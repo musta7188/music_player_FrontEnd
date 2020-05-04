@@ -7,6 +7,7 @@ import Signup from "./Signup";
 import AllSongs from "./APIs/AllSongs";
 import { connect } from "react-redux";
 import HomePage from "./components/HomePage/HomePage";
+
 class App extends React.Component {
   constructor() {
     super();
@@ -23,12 +24,12 @@ class App extends React.Component {
   checkToken = () => {
     if (localStorage.token) {
       API.validate(localStorage.token).then((json) =>
-        this.LogIn(json.username, json.token)
+        this.logIn(json.username, json.token)
       );
     }
   };
 
-  LogIn = (username, token) => {
+  logIn = (username, token) => {
     this.setState({
       username,
     });
@@ -36,6 +37,13 @@ class App extends React.Component {
     localStorage.token = token;
   };
 
+  logOut = () => {
+    this.setState({
+      username: null
+    })
+    localStorage.removeItem("token")
+  }
+  
   render() {
 
     const {username} = this.state
@@ -44,14 +52,16 @@ class App extends React.Component {
         {
         username 
         ? 
-        <HomePage/> 
+        <Router>
+        <Route exact path="/home" component={() => <HomePage logOut={this.logOut}/>} /> 
+        </Router>
         : 
         <Router>
-        <Route exact path="/sign-up" component={() => <Signup />} />
+        <Route exact path="/sign-up" component={() => <Signup logIn={this.logIn} username={this.state.username} />} />
         <Route
           exact
           path="/log-in"
-          component={() => <Login LogIn={this.LogIn} />}
+          component={() => <Login logIn={this.logIn} />}
         /> 
        </Router>
         }
