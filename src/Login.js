@@ -19,12 +19,14 @@ class Login extends React.Component {
 	};
 	handleSubmit = (e) => {
 		e.preventDefault();
+
         this.props.history.push('/home')
 
 
 		API.logIn(this.state)
 		.then((json) => this.props.logIn(json.username, json.token));
 		// .then(json => console.log(json))
+
 	};
 
 	render() {

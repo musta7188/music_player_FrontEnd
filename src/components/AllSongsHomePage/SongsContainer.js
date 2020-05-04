@@ -13,7 +13,7 @@ function SongsContainer({ songs }) {
   const classes = useStyles();
 
   const handleNext = (value) => {
-    debugger;
+  
     if (value === "more") {
       setLimit(limit + 5);
       setStartLimit(startLimit + 5);
