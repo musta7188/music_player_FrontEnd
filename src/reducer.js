@@ -1,6 +1,9 @@
+import { CardActionArea } from "@material-ui/core"
+
 const initialState = {
   songs: [],
-  playingSong: ""
+  playingSong: "",
+  selectedSongs: null
 }
 
 
@@ -15,6 +18,11 @@ const reducer = (state = initialState, action) =>{
     return{
       ...state,
       playingSong: action.payload.link
+    }
+  }else if(action.type === "SELECTED_SONGS"){
+    return {
+      ...state,
+      selectedSongs: action.payload.songs
     }
   }
 
