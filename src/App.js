@@ -44,7 +44,9 @@ class App extends React.Component {
         {
         username 
         ? 
-        <HomePage/> 
+          <Router>
+          <Route render={props => <HomePage {...props }/> }  />
+       </Router>
         : 
         <Router>
         <Route exact path="/sign-up" component={() => <Signup />} />

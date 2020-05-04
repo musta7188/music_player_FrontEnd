@@ -22,7 +22,7 @@ export default class Login extends React.Component {
 		API.LogIn(this.state)
 			
 			.then((json) => this.props.LogIn(json.username, json.token));
-		// .then(json => console.log(json))
+			
 	};
 
 	render() {
