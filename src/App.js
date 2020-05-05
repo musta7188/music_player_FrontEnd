@@ -7,8 +7,7 @@ import Signup from "./Signup";
 import AllSongs from "./APIs/AllSongs";
 import { connect } from "react-redux";
 import HomePage from "./components/HomePage/HomePage";
-import { withRouter } from 'react-router-dom';
-
+import { withRouter } from "react-router-dom";
 
 class App extends React.Component {
   constructor() {
@@ -37,43 +36,47 @@ class App extends React.Component {
     });
 
     localStorage.token = token;
-    this.props.history.push('/songs')
-
+    this.props.history.push("/songs");
   };
 
   logOut = () => {
     this.setState({
-      username: null
-    })
-    localStorage.removeItem("token")
-  }
-  
-  render() {
+      username: null,
+    });
+    localStorage.removeItem("token");
+  };
 
-    const {username} = this.state
+  render() {
+    const { username } = this.state;
     return (
       <div className="App">
-        {
-        username 
-        ? 
-
-        
-          <Route path="/"  render={props => <HomePage {...props }  logOut={this.logOut}  username={this.state.username} /> }  />
-       
-
-        : 
-        <>
-        <Route exact path="/sign-up" component={() => <Signup logIn={this.logIn} username={this.state.username} />} />
-        <Route
-          exact
-          path="/log-in"
-          component={() => <Login logIn={this.logIn} />}
-        /> 
-       </>
-        }
-
-    
-       
+        {username ? (
+          <Route
+            path="/"
+            render={(props) => (
+              <HomePage
+                {...props}
+                logOut={this.logOut}
+                username={this.state.username}
+              />
+            )}
+          />
+        ) : (
+          <>
+            <Route
+              exact
+              path="/sign-up"
+              component={() => (
+                <Signup logIn={this.logIn} username={this.state.username} />
+              )}
+            />
+            <Route
+              exact
+              path="/log-in"
+              component={() => <Login logIn={this.logIn} />}
+            />
+          </>
+        )}
       </div>
     );
   }
@@ -87,4 +90,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(null, mapDispatchToProps)(withRouter(App));
-

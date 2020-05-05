@@ -7,19 +7,21 @@ import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 
 function SongsContainer({ songs }) {
-  const [limit, setLimit] = useState(5);
+  const songPerPage = 6;
+
+  const [limit, setLimit] = useState(songPerPage);
+
   const [startLimit, setStartLimit] = useState(0);
 
   const classes = useStyles();
 
   const handleNext = (value) => {
-  
     if (value === "more") {
-      setLimit(limit + 5);
-      setStartLimit(startLimit + 5);
+      setLimit(limit + songPerPage);
+      setStartLimit(startLimit + songPerPage);
     } else {
-      setLimit(limit <= 5 ? limit : limit - 5);
-      setStartLimit(startLimit <= 0 ? startLimit : startLimit - 5);
+      setLimit(limit <= songPerPage ? limit : limit - songPerPage);
+      setStartLimit(startLimit <= 0 ? startLimit : startLimit - songPerPage);
     }
   };
 
@@ -40,7 +42,9 @@ function SongsContainer({ songs }) {
             aria-label="outlined secondary button group"
           >
             <Button onClick={() => handleNext("less")}>Back</Button>
-            <Button onClick={() => handleNext("more")}>Next</Button>
+            {limit <= 24 && (
+              <Button onClick={() => handleNext("more")}>Next</Button>
+            )}
           </ButtonGroup>
         </div>
       </Grid>

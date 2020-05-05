@@ -1,30 +1,61 @@
-import React from 'react';
-import { MDBCol, MDBIcon } from "mdbreact";
-
-
-
+import React, { useState, useEffect }from 'react';
+import ReactSearchBox from 'react-search-box'
+import SearchContainer from './SearchContainer'
+import {connect} from 'react-redux'
  function Search(props) {
   const {classes} = props
+  const {SongsSearched} = props
+
+  const [value, setValue] = useState("")
+
+  ///fetch from the api songs, artist or album matching the value of the input 
+  const getSearchedItems = () => {
+
+      fetch(`https://deezerdevs-deezer.p.rapidapi.com/search/track?q=${value}`, {
+        "method": "GET",
+        "headers": {
+          "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+          "x-rapidapi-key": "178f0cd1fbmsh29f81f40b999084p1211d1jsneb0d0e6e0aaf"
+   } }).then(resp => resp.json()).then(obj => SongsSearched(obj.data))
+
+  }
+
+
+  const handelChance = (value) => {
+    setValue(value)
+    getSearchedItems()
+  }
+
 
   return (
-    <MDBCol md="6">
-    <div className="input-group md-form form-sm form-1 pl-0">
-      <div className="input-group-prepend">
-        <span className="input-group-text purple lighten-3" id="basic-text1">
-          <MDBIcon className="text-white" icon="search" />
-        </span>
-      </div>
-      <input className="form-control my-0 py-1" type="text" placeholder="Search" aria-label="Search" />
-    </div>
-  </MDBCol>
+      <>
+    <ReactSearchBox
+          placeholder="Search Songs"
+          onChange={(value) => handelChance(value)}
+          fuseConfigs={{
+            threshold: 0.05,
+          }}
+          value={value}
+        />
+        
+        <br></br>
+  
+      <SearchContainer/>
+        </>
 
   )
 
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    SongsSearched: songs => dispatch({type: "SELECTED_SONGS", payload: {songs: songs}})
+  }
+}
 
 
-export default Search;
+
+export default connect(null, mapDispatchToProps) (Search);
 
 
 

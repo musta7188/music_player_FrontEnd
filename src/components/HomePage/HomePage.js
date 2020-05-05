@@ -27,6 +27,7 @@ function HomePage(props) {
 
     switch(selection){
       case "Home Page":
+  
         props.history.push('/songs')
         break;
         case "playlists":
