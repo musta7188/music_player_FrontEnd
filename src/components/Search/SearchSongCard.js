@@ -46,9 +46,9 @@ function SearchSongCard({ song, playingSong, songToPlay }) {
           </IconButton>
           <IconButton aria-label="play/pause">
             {playingSong === song.preview ? (
-              <StopIcon onClick={handelPlay} />
+              <StopIcon onClick={() => handelPlay()} />
             ) : (
-              <PlayArrowIcon onClick={handelPlay} />
+              <PlayArrowIcon onClick={() => handelPlay()} />
             )}
           </IconButton>
           <IconButton aria-label="next">
@@ -79,7 +79,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    playingSong: state.playingSong
+    playingSong: state.playingSong,
   };
 };
 

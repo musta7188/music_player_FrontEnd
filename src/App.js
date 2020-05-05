@@ -39,37 +39,38 @@ class App extends React.Component {
 
   logOut = () => {
     this.setState({
-      username: null
-    })
-    localStorage.removeItem("token")
-  }
-  
-  render() {
+      username: null,
+    });
+    localStorage.removeItem("token");
+  };
 
-    const {username} = this.state
+  render() {
+    const { username } = this.state;
     return (
       <div className="App">
-        {
-        username 
-        ? 
-
+        {username ? (
           <Router>
-          <Route path="/"  render={props => <HomePage {...props }  logOut={this.logOut}   /> }  />
-       </Router>
-
-        : 
-        <Router>
-        <Route exact path="/sign-up" component={() => <Signup logIn={this.logIn} username={this.state.username} />} />
-        <Route
-          exact
-          path="/log-in"
-          component={() => <Login logIn={this.logIn} />}
-        /> 
-       </Router>
-        }
-
-    
-       
+            <Route
+              path="/"
+              render={(props) => <HomePage {...props} logOut={this.logOut} />}
+            />
+          </Router>
+        ) : (
+          <Router>
+            <Route
+              exact
+              path="/sign-up"
+              component={() => (
+                <Signup logIn={this.logIn} username={this.state.username} />
+              )}
+            />
+            <Route
+              exact
+              path="/log-in"
+              component={() => <Login logIn={this.logIn} />}
+            />
+          </Router>
+        )}
       </div>
     );
   }
