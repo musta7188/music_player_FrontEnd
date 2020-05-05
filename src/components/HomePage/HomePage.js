@@ -10,9 +10,11 @@ import PropTypes from "prop-types";
 import HeaderSong from "./HeaderSong";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Search from '../Search/Search'
+import Playlist from '../Playlist/Playlist'
+
 function HomePage(props) {
 
-  const { classes, logOut } = props;
+  const { classes, logOut, username } = props;
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -79,7 +81,13 @@ function HomePage(props) {
                 exact
                 path={"/search"}
                 render={(props) => <Search {...props} />}
-              />    
+              />   
+
+              <Route
+                exact
+                path={"/playlists"}
+                render={(props) => <Playlist {...props} username={username} />}
+              /> 
 
 
 

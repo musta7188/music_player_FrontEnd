@@ -19,7 +19,7 @@ class Signup extends React.Component {
 	};
 	handleSubmit = (e) => {
 		e.preventDefault();
-		this.props.history.push("/home");
+		
 		API.signUp(this.state)
 	    //API.logIn(this.state.username, this.state.password_digest).then(json => console.log(json))
         .then((json) => this.props.logIn(json.username, json.token));
