@@ -51,7 +51,8 @@ const reducer = (state = initialState, action) => {
   }
   if (action.type === "ADD_SONG"){
 
-    debugger
+   ///find the song with the id of the playlist and incase it has already an  attribute of songs it push the songs inside else  he add an attribute of songs
+   ////and add the first song in that array 
     return{
       ...state,
       playList: state.playList.filter(play => play.id == action.payload.playlistID)[0].songs ?

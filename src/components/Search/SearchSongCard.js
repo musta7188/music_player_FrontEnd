@@ -5,17 +5,17 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import SkipPreviousIcon from "@material-ui/icons/SkipPrevious";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
-import SkipNextIcon from "@material-ui/icons/SkipNext";
 import useStyles from "../AllSongsHomePage/StyleContainerComponents/SongCardStyle";
 import { connect } from "react-redux";
 import StopIcon from "@material-ui/icons/Stop";
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
-import AddSongModal from './Modal/AddSongModal'
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+
+import AddSongModal from "./Modal/AddSongModal";
 function SearchSongCard({ song, playingSong, songToPlay }) {
   const [play, setPlay] = useState(false);
+  const [like, setLike] = useState(false);
 
   const classes = useStyles();
   const theme = useTheme();
@@ -39,10 +39,8 @@ function SearchSongCard({ song, playingSong, songToPlay }) {
           </Typography>
         </CardContent>
         <div className={classes.controls}>
-          <IconButton aria-label="previous">
-            
-            <AddSongModal song={song}/>
-
+          <IconButton aria-label="add to playlist">
+            <AddSongModal song={song} />
           </IconButton>
           <IconButton aria-label="play/pause">
             {playingSong === song.preview ? (
@@ -51,23 +49,16 @@ function SearchSongCard({ song, playingSong, songToPlay }) {
               <PlayArrowIcon onClick={() => handelPlay()} />
             )}
           </IconButton>
-          <IconButton aria-label="next">
-            
-              <FavoriteBorderIcon />
-            
+          <IconButton aria-label="like">
+            <div onClick={() => setLike(!like)}>
+              {like ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+            </div>
           </IconButton>
-          
         </div>
       </div>
 
-      <CardMedia
-        className={classes.cover}
-        image={song.album.cover}
-       
-      />
-
+      <CardMedia className={classes.cover} image={song.album.cover} />
     </Card>
-   
   );
 }
 

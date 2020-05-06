@@ -5,15 +5,18 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import SkipPreviousIcon from "@material-ui/icons/SkipPrevious";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
-import SkipNextIcon from "@material-ui/icons/SkipNext";
 import useStyles from "./StyleContainerComponents/SongCardStyle";
 import { connect } from "react-redux";
 import StopIcon from "@material-ui/icons/Stop";
+import AddSongModal2 from './Modal/AddSongModal2'
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+
 
 function SongCard({ song, playingSong, songToPlay }) {
   const [play, setPlay] = useState(false);
+  const [like, setLike] = useState(false);
 
   const classes = useStyles();
   const theme = useTheme();
@@ -37,12 +40,8 @@ function SongCard({ song, playingSong, songToPlay }) {
           </Typography>
         </CardContent>
         <div className={classes.controls}>
-          <IconButton aria-label="previous">
-            {theme.direction === "rtl" ? (
-              <SkipNextIcon />
-            ) : (
-              <SkipPreviousIcon />
-            )}
+          <IconButton aria-label="add song to playlist">
+            <AddSongModal2 song={song}/>
           </IconButton>
           <IconButton aria-label="play/pause">
             {playingSong === song.song_link ? (
@@ -51,12 +50,10 @@ function SongCard({ song, playingSong, songToPlay }) {
               <PlayArrowIcon onClick={handelPlay} />
             )}
           </IconButton>
-          <IconButton aria-label="next">
-            {theme.direction === "rtl" ? (
-              <SkipPreviousIcon />
-            ) : (
-              <SkipNextIcon />
-            )}
+          <IconButton aria-label="like">
+          <div onClick={() => setLike(!like)}>
+            {like ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+            </div>
           </IconButton>
         </div>
       </div>

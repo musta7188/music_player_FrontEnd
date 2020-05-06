@@ -15,11 +15,11 @@ const styles = (theme) => ({
     color: 'white',
     '&:hover,&:focus': {
       ///hover color 
-      backgroundColor: 'blue',
+      backgroundColor: 'red',
     },
   },
   itemCategory: {
-    backgroundColor: '#232f3e',
+    backgroundColor: '#9C9934',
     boxShadow: '0 -1px 0 #404854 inset',
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),

@@ -36,7 +36,10 @@ function HomePage(props) {
 		}
 	};
 
+	const imge = "https://i.ytimg.com/vi/kVGXAfzVIkE/maxresdefault.jpg"
+
 	return (
+		<div style={{backgroundImage: `url(${imge})`}}>
 		<ThemeProvider theme={theme}>
 			<div className={classes.root}>
 				<CssBaseline />
@@ -91,6 +94,7 @@ function HomePage(props) {
 				</div>
 			</div>
 		</ThemeProvider>
+		</div>
 	);
 }
 
