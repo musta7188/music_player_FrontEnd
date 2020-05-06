@@ -11,7 +11,9 @@ import SkipNextIcon from "@material-ui/icons/SkipNext";
 import useStyles from "../AllSongsHomePage/StyleContainerComponents/SongCardStyle";
 import { connect } from "react-redux";
 import StopIcon from "@material-ui/icons/Stop";
-
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
+import AddSongModal from './Modal/AddSongModal'
 function SearchSongCard({ song, playingSong, songToPlay }) {
   const [play, setPlay] = useState(false);
 
@@ -38,11 +40,9 @@ function SearchSongCard({ song, playingSong, songToPlay }) {
         </CardContent>
         <div className={classes.controls}>
           <IconButton aria-label="previous">
-            {theme.direction === "rtl" ? (
-              <SkipNextIcon />
-            ) : (
-              <SkipPreviousIcon />
-            )}
+            
+            <AddSongModal song={song}/>
+
           </IconButton>
           <IconButton aria-label="play/pause">
             {playingSong === song.preview ? (
@@ -52,21 +52,22 @@ function SearchSongCard({ song, playingSong, songToPlay }) {
             )}
           </IconButton>
           <IconButton aria-label="next">
-            {theme.direction === "rtl" ? (
-              <SkipPreviousIcon />
-            ) : (
-              <SkipNextIcon />
-            )}
+            
+              <FavoriteBorderIcon />
+            
           </IconButton>
+          
         </div>
       </div>
 
       <CardMedia
         className={classes.cover}
         image={song.album.cover}
-        title="Live from space album cover"
+       
       />
+
     </Card>
+   
   );
 }
 

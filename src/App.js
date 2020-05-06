@@ -20,6 +20,11 @@ class App extends React.Component {
   componentDidMount() {
     this.checkToken();
     AllSongs().then(this.props.getSongs);
+    this.getUserPlaylist();
+  }
+
+  getUserPlaylist = () => {
+    API.getPlaylists(localStorage.token).then( (obj) => this.props.getPlaylist(obj));
   }
 
   checkToken = () => {
@@ -44,6 +49,7 @@ class App extends React.Component {
       username: null,
     });
     localStorage.removeItem("token");
+    // this.props.history.push("sign-up")
   };
 
   render() {
@@ -57,7 +63,7 @@ class App extends React.Component {
               <HomePage
                 {...props}
                 logOut={this.logOut}
-                username={this.state.username}
+                username={this.state.username.username}
               />
             )}
           />
@@ -67,7 +73,7 @@ class App extends React.Component {
               exact
               path="/sign-up"
               component={() => (
-                <Signup logIn={this.logIn} username={this.state.username} />
+                <Signup logIn={this.logIn} />
               )}
             />
             <Route
@@ -84,8 +90,8 @@ class App extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getSongs: (songs) =>
-      dispatch({ type: "SET_SONGS", payload: { songs: songs } }),
+    getSongs: (songs) => dispatch({ type: "SET_SONGS", payload: { songs: songs } }),
+    getPlaylist: (playlist) => dispatch({type: 'SET_PLAYLIST', payload:{playlist: playlist}})
   };
 };
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect }from 'react';
 import ReactSearchBox from 'react-search-box'
 import SearchContainer from './SearchContainer'
 import {connect} from 'react-redux'
- function Search(props) {
+ function SearchPage(props) {
   const {classes} = props
   const {SongsSearched} = props
 
@@ -55,7 +55,7 @@ const mapDispatchToProps = dispatch => {
 
 
 
-export default connect(null, mapDispatchToProps) (Search);
+export default connect(null, mapDispatchToProps) (SearchPage);
 
 
 

@@ -9,7 +9,7 @@ import SongsContainer from "../AllSongsHomePage/SongsContainer";
 import PropTypes from "prop-types";
 import HeaderSong from "./HeaderSong";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Search from '../Search/Search'
+import SearchPage from '../Search/SearchPage'
 import Playlist from '../Playlist/Playlist'
 
 function HomePage(props) {
@@ -81,7 +81,7 @@ function HomePage(props) {
                   <Route
                 exact
                 path={"/search"}
-                render={(props) => <Search {...props} />}
+                render={(props) => <SearchPage {...props} />}
               />   
 
               <Route

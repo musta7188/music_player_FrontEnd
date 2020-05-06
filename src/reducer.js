@@ -4,6 +4,7 @@ const initialState = {
   songs: [],
   playingSong: "",
   selectedSongs: null,
+  playList:[]
 };
 
 
@@ -28,6 +29,19 @@ const reducer = (state = initialState, action) => {
       ...state,
       selectedSongs: action.payload.songs,
     };
+  }
+  if (action.type === 'SET_PLAYLIST') {
+    return {
+      ...state,
+      playList: action.payload.playlist
+
+    }
+  }
+  if (action.type ===  "ADD_PLAYLIST"){
+    return {
+      ...state,
+      playList: [...state.playList, action.payload.playlist]
+    }
   }
 
   return state;

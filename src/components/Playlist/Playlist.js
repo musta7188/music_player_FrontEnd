@@ -2,11 +2,11 @@ import React from "react";
 import CreatePlaylist from "./StyleComponent/CreatePlaylist";
 import PlaylistsStyle from "./StyleComponent/PlaylistsStyle";
 import API from "../../../src/API";
-import PlaylistShow from './PlaylistShow'
-import { BrowserRouter as Router, Route, Link} from "react-router-dom";
+import {connect}  from 'react-redux'
 
 
-export default class Playlist extends React.Component {
+
+class Playlist extends React.Component {
 	constructor() {
 		super();
 		this.state = {
@@ -16,12 +16,12 @@ export default class Playlist extends React.Component {
 	}
 
 	componentDidMount() {
-		API.getPlaylists(localStorage.token).then((json) =>
-			this.setState({
-				playlistData: json,
-			})
-		);
+	this.setState({
+		playlistData: this.props.AllPlayList
+	})
 	}
+
+
 	handleChange = (e) => {
 		this.setState({
 			[e.target.name]: e.target.value,
@@ -36,9 +36,9 @@ export default class Playlist extends React.Component {
 			},
 			localStorage.token
 		).then((playlist) =>
-			this.setState({
-				playlistData: [...this.state.playlistData, playlist]
-			})
+		
+		this.props.updatePlaylist(playlist)
+
 		);
 	};
 
@@ -58,10 +58,26 @@ export default class Playlist extends React.Component {
 					handleSubmit={this.handleSubmit}
 				/>
 				
-				<PlaylistsStyle playlistData={this.state.playlistData} removePlaylist={this.removePlaylist}  />
+				<PlaylistsStyle playlistData={this.props.AllPlayList} removePlaylist={this.removePlaylist}  />
 			</div>
 		
 		
 		);
 	}
 }
+
+const mapStateToProps = state => {
+  return {
+    AllPlayList: state.playList
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+		 updatePlaylist: (playlist) => dispatch({ type: "ADD_PLAYLIST", payload: { playlist: playlist } })
+
+  };
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps) (Playlist)

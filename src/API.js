@@ -3,6 +3,9 @@ const logInURL = `${baseURL}/log-in`;
 const validateURL = `${baseURL}/validate`;
 const createUserURL = `${baseURL}/users`;
 const createPlaylistURL = `${baseURL}/playlists`;
+const createSongUrl = `${baseURL}/songs`
+const createPlayListSongLink = `${baseURL}/playlist_songs`
+
 
 const post = (url, data, token) => {
 	const configObject = {
@@ -16,6 +19,14 @@ const post = (url, data, token) => {
 	};
 	return fetch(url, configObject);
 };
+
+const createSong = (data) => {
+return post(createSongUrl, data).then(resp => resp.json())
+}
+
+const createPlayListSong = (data) =>{
+	return post(createPlayListSongLink, data).then(resp => resp.json())
+}
 
 const get = (url, token) => {
 	return token ? fetch(url, { headers: { AUTHORIZATION: token } }) : fetch(url);
@@ -56,5 +67,7 @@ export default {
 	signUp,
 	createPlaylist,
   getPlaylists,
-  deletePlaylist
+	deletePlaylist,
+	createSong,
+	createPlayListSong
 };
