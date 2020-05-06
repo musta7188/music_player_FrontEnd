@@ -24,8 +24,8 @@ class App extends React.Component {
 
   checkToken = () => {
     if (localStorage.token) {
-      API.validate(localStorage.token).then((json) =>
-        this.logIn(json.username, json.token)
+      API.validate(localStorage.token).then((user) =>
+        this.logIn(user.username, user.token)
       );
     }
   };

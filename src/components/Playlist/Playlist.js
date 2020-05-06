@@ -16,9 +16,9 @@ export default class Playlist extends React.Component {
 	}
 
 	componentDidMount() {
-		API.getPlaylists(localStorage.token).then((json) =>
+		API.getPlaylists(localStorage.token).then((playlists) =>
 			this.setState({
-				playlistData: json,
+				playlistData: playlists,
 			})
 		);
 	}
