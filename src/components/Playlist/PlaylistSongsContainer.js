@@ -25,11 +25,14 @@ function PlaylistSongsContainer({ songs }) {
     }
   };
 
+debugger
+
   return (
+  
     <Grid container className={classes.root} spacing={3}>
       <Grid item xs={15}>
         <Grid container justify="center" spacing={4}>
-          {songs.slice(startLimit, limit).map((song) => (
+          {songs && songs.slice(startLimit, limit).map((song) => (
             <Grid key={song.id} item>
               <SongCard song={song} />
             </Grid>
@@ -42,7 +45,7 @@ function PlaylistSongsContainer({ songs }) {
             aria-label="outlined secondary button group"
           >
             <Button onClick={() => handleNext("less")}>Back</Button>
-            {limit <= 24 && (
+            { songs && limit <= songs.length && (
               <Button onClick={() => handleNext("more")}>Next</Button>
             )}
           </ButtonGroup>

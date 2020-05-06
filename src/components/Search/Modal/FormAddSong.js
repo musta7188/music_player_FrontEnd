@@ -6,7 +6,10 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import {connect } from 'react-redux'
 import API from '../../../API'
-function FormAddSong({AllPlayList, song}) {
+
+
+
+function FormAddSong({AllPlayList, song, removeSong}) {
   const [playList, setPlayList] = React.useState("");
 
   const handleChange = (event) => {
@@ -24,7 +27,7 @@ const handleSubmit = (e) => {
     song_link: song.preview
   }
 API.createSong(data).then(songObj => {
-  API.createPlayListSong({song_id: songObj.id, playlist_id: playList}).then(obj => console.log(obj))
+  API.createPlayListSong({song_id: songObj.id, playlist_id: playList}).then(obj => removeSong(obj.song, obj.playlist.id))
 
 })
 
@@ -66,4 +69,12 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps) (FormAddSong);
+const mapDispatchToProps = dispatch =>{
+  return{
+    removeSong: (song, playlistID) => dispatch({ type: "ADD_SONG", payload: {song: song, playlistID: playlistID}})
+  }
+}
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps) (FormAddSong);

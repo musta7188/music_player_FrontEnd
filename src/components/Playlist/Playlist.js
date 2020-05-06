@@ -44,9 +44,7 @@ class Playlist extends React.Component {
 
 	removePlaylist = (id) => {
 		API.deletePlaylist(id)
-		this.setState({
-			playlistData: this.state.playlistData.filter(playlist => playlist.id !== id)
-		})
+		this.props.deletePlaylist(id)
 	}
 
 	
@@ -75,7 +73,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-		 updatePlaylist: (playlist) => dispatch({ type: "ADD_PLAYLIST", payload: { playlist: playlist } })
+		 updatePlaylist: (playlist) => dispatch({ type: "ADD_PLAYLIST", payload: { playlist: playlist } }),
+		 deletePlaylist: (playlistID) => dispatch({type: "REMOVE_PLAYLIST", payload: {playlistID: playlistID} })
 
   };
 };

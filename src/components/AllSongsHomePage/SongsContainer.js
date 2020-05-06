@@ -42,7 +42,7 @@ function SongsContainer({ songs }) {
             aria-label="outlined secondary button group"
           >
             <Button onClick={() => handleNext("less")}>Back</Button>
-            {limit <= 24 && (
+            {limit <= songs.length && (
               <Button onClick={() => handleNext("more")}>Next</Button>
             )}
           </ButtonGroup>

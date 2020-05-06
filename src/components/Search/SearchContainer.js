@@ -44,7 +44,7 @@ function SearchContainer({ songs }) {
                 aria-label="outlined secondary button group"
               >
                 <Button onClick={() => handleNext("less")}>Back</Button>
-                { limit <= 20 && <Button onClick={() => handleNext("more")}>Next</Button>}
+                { limit <= songs.length && <Button onClick={() => handleNext("more")}>Next</Button>}
               </ButtonGroup>
             </div>
           </Grid>
