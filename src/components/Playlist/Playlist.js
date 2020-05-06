@@ -53,6 +53,7 @@ class Playlist extends React.Component {
 	render() {
 		return (
 			<div>
+				
 				<CreatePlaylist
 					handleChange={this.handleChange}
 					handleSubmit={this.handleSubmit}

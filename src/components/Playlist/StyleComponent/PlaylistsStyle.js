@@ -103,13 +103,12 @@ function PlaylistsStyle(props) {
 									</CardContent>
 									<CardActions>
 										<nav>
-									<Link to="playlist-show">
+									<Link to={`playlist-show/${card.id}`} >
 										<Button size="small" color="primary">
 											View
 										</Button>
 									</Link>
 									</nav>
-									<Route exact path="/playlist-show" component={() => <PlaylistShow/>} />
 										<Button
 											onClick={() => removePlaylist(card.id)}
 											size="small"
