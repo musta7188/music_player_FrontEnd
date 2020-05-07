@@ -25,7 +25,7 @@ function PlaylistSongsContainer({ songs }) {
     }
   };
 
-debugger
+
 
   return (
   
@@ -44,7 +44,7 @@ debugger
             color="secondary"
             aria-label="outlined secondary button group"
           >
-            <Button onClick={() => handleNext("less")}>Back</Button>
+           {songs.length > 5 && <Button onClick={() => handleNext("less")}>Back</Button>}
             { songs && limit <= songs.length && (
               <Button onClick={() => handleNext("more")}>Next</Button>
             )}

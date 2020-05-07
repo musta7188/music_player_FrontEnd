@@ -5,7 +5,8 @@ import { connect } from "react-redux";
 import MicOffIcon from "@material-ui/icons/MicOff";
 import MicIcon from "@material-ui/icons/Mic";
 
-const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+const SpeechRecognition =
+  window.SpeechRecognition || window.webkitSpeechRecognition;
 
 const recognition = new SpeechRecognition();
 
@@ -38,7 +39,6 @@ function SearchPage(props) {
   };
 
   recognition.onresult = (e) => {
-  
     handelChance(e.results[0][0].transcript);
   };
 

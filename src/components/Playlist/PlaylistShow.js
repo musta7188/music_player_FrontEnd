@@ -1,38 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
 import PlaylistSongsContainer from "./PlaylistSongsContainer";
-
+import API from "../../API";
 // make a functional component?
-function PlaylistShow({ AllPlayList, match }) {
+function PlaylistShow({ match }) {
   const [playlistSongs, setPlaylistSongs] = useState(null);
 
-
-  
   useEffect(() => {
-    const currentPlaylist = AllPlayList.filter(
-      (playlist) => playlist.id === parseInt(match.params.id, 10)
+    API.getSelectedPlaylist(match.params.id).then((playlistObj) =>
+      setPlaylistSongs(playlistObj)
     );
-    setPlaylistSongs(currentPlaylist[0]);
-  }, []);
-
-
-
+  });
 
   return (
-
-
     <div>
-      <h1>TEST</h1>
+      <h1>{playlistSongs && playlistSongs.name}</h1>
 
-      {playlistSongs &&  <PlaylistSongsContainer songs={playlistSongs.songs} />}
+      {playlistSongs && <PlaylistSongsContainer songs={playlistSongs.songs} />}
     </div>
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    AllPlayList: state.playList
-  };
-};
-
-export default connect(mapStateToProps, null)(PlaylistShow);
+export default PlaylistShow;

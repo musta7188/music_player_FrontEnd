@@ -24,6 +24,10 @@ const createSong = (data) => {
 return post(createSongUrl, data).then(resp => resp.json())
 }
 
+
+
+
+
 const createPlayListSong = (data) =>{
 	return post(createPlayListSongLink, data).then(resp => resp.json())
 }
@@ -61,6 +65,16 @@ const deletePlaylist = (id) => {
   fetch(`${createPlaylistURL}/${id}`, { method: "DELETE"})
 };
 
+
+const getSelectedPlaylist = (id) => {
+	return fetch(`http://localhost:3001/playlists/${id}`)
+	 .then(resp => resp.json())
+	 
+ 
+ }
+
+
+
 export default {
 	logIn,
 	validate,
@@ -69,5 +83,7 @@ export default {
   getPlaylists,
 	deletePlaylist,
 	createSong,
-	createPlayListSong
+	createPlayListSong,
+	getSelectedPlaylist
+
 };

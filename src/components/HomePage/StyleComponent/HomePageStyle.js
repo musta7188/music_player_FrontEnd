@@ -134,7 +134,7 @@ const styles = {
     flex: 1,
     padding: theme.spacing(6, 4),
     ///background main box
-    background: '#EEEEDC',
+    background: 'black',
    
   },
 

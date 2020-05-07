@@ -18,7 +18,7 @@ import styles from "./StyleComponent/NavigatorStyle";
 function Navigator(props) {
   const { classes, ...other } = props;
   const { handelSelection} = props
-  const [active, setActive] = useState("Home Page");
+  const [active, setActive] = useState();
 
 
   useEffect(() => {
@@ -88,7 +88,7 @@ function Navigator(props) {
               primary: classes.itemPrimary,
             }}
           >
-            User Name
+            Welcome Mustafa
           </ListItemText>
         </ListItem>
         {categories.map(({ id, children }) => (

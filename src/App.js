@@ -41,7 +41,6 @@ class App extends React.Component {
     });
 
     localStorage.token = token;
-    this.props.history.push("/songs");
   };
 
   logOut = () => {
@@ -49,7 +48,7 @@ class App extends React.Component {
       username: null,
     });
     localStorage.removeItem("token");
-    // this.props.history.push("sign-up")
+    this.props.history.push("sign-up")
   };
 
   render() {
