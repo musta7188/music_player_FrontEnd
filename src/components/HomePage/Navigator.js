@@ -17,7 +17,8 @@ import styles from "./StyleComponent/NavigatorStyle";
 
 function Navigator(props) {
   const { classes, ...other } = props;
-  const { handelSelection} = props
+
+  const { handelSelection, username} = props
   const [active, setActive] = useState();
 
 
@@ -38,7 +39,7 @@ function Navigator(props) {
 
   const categories = [
     {
-      id: "Develop",
+      
       children: [
         {
           id: "Home Page",
@@ -72,7 +73,7 @@ function Navigator(props) {
   return (
 
     <Drawer variant="permanent" {...other}>
-      }
+
       <List disablePadding>
         <ListItem
           className={clsx(classes.firebase, classes.item, classes.itemCategory)}
@@ -88,7 +89,7 @@ function Navigator(props) {
               primary: classes.itemPrimary,
             }}
           >
-            Welcome Mustafa
+             {`Welcome ${username}`}
           </ListItemText>
         </ListItem>
         {categories.map(({ id, children }) => (

@@ -6,7 +6,7 @@ let theme = createMuiTheme({
     primary: {
       light: '#63ccff',
       ///top nav bar background
-      main: '#32DFB0',
+      main: 'rgb(101, 166, 145)',
       dark: '#006db3',
     },
   },
@@ -37,7 +37,7 @@ theme = {
   overrides: {
     MuiDrawer: {
       paper: {
-        backgroundColor: '#2A40CF',
+        backgroundColor: 'rgb(101, 166, 145)',
       },
     },
     MuiButton: {
@@ -86,7 +86,7 @@ theme = {
     },
     MuiDivider: {
       root: {
-        backgroundColor: 'red',
+        backgroundColor: 'blue',
       },
     },
     MuiListItemText: {
@@ -134,7 +134,7 @@ const styles = {
     flex: 1,
     padding: theme.spacing(6, 4),
     ///background main box
-    background: 'black',
+    background: '#DFDFDF',
    
   },
 

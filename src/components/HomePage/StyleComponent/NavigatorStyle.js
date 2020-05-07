@@ -19,7 +19,8 @@ const styles = (theme) => ({
     },
   },
   itemCategory: {
-    backgroundColor: '#9C9934',
+    ///top left nav bar two block
+    backgroundColor: '#073AAF',
     boxShadow: '0 -1px 0 #404854 inset',
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
@@ -29,7 +30,7 @@ const styles = (theme) => ({
     color: theme.palette.common.white,
   },
   itemActiveItem: {
-    color: '#4fc3f7',
+    color: 'blue',
   },
   itemPrimary: {
     fontSize: 'inherit',

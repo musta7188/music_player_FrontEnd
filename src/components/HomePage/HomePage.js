@@ -58,6 +58,7 @@ function HomePage(props) {
 							currentPath={props.history.location.pathname.slice(1)}
 							props={props}
 							handelSelection={handelSelection}
+							username={username}
 						/>
 					</Hidden>
 				</nav>

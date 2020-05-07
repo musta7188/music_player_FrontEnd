@@ -62,7 +62,7 @@ class App extends React.Component {
               <HomePage
                 {...props}
                 logOut={this.logOut}
-                username={this.state.username.username}
+                username={this.state.username}
               />
             )}
           />
