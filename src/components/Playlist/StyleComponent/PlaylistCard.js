@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function PlaylistsStyle(props) {
+function PlaylistCard(props) {
   const { playlistData, removePlaylist, renderShowPage } = props;
   const classes = useStyles();
 
@@ -97,4 +97,4 @@ function PlaylistsStyle(props) {
   );
 }
 
-export default withRouter(PlaylistsStyle);
+export default withRouter(PlaylistCard);

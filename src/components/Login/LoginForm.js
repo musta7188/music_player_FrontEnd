@@ -11,7 +11,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Signup from "./Signup";
+import Signup from "../Signup/Signup";
 
 
 const useStyles = makeStyles((theme) => ({

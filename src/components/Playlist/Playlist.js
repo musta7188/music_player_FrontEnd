@@ -1,7 +1,7 @@
 import React from "react";
 import CreatePlaylist from "./StyleComponent/CreatePlaylist";
-import PlaylistsStyle from "./StyleComponent/PlaylistsStyle";
-import API from "../../../src/API";
+import PlaylistCard from "./StyleComponent/PlaylistCard";
+import API from "../../APIs/API";
 import {connect}  from 'react-redux'
 
 
@@ -57,7 +57,7 @@ class Playlist extends React.Component {
 					handleSubmit={this.handleSubmit}
 				/>
 				
-				<PlaylistsStyle playlistData={this.props.AllPlayList} removePlaylist={this.removePlaylist}  />
+				<PlaylistCard playlistData={this.props.AllPlayList} removePlaylist={this.removePlaylist}  />
 			</div>
 		
 		

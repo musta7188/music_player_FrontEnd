@@ -1,9 +1,9 @@
 import React from "react";
 import "./App.css";
-import Login from "./Login";
+import Login from "./components/Login/Login";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import API from "./API";
-import Signup from "./Signup";
+import API from "./APIs/API";
+import Signup from "./components/Signup/Signup";
 import AllSongs from "./APIs/AllSongs";
 import { connect } from "react-redux";
 import HomePage from "./components/HomePage/HomePage";

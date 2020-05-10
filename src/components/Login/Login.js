@@ -1,5 +1,5 @@
 import React from "react";
-import API from "./API";
+import API from "../../APIs/API";
 import LoginForm from "./LoginForm";
 import { withRouter } from "react-router-dom";
 
