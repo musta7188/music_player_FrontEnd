@@ -23,7 +23,7 @@ class Login extends React.Component {
 		API.logIn(this.state).then((json) =>
 			this.props.logIn(json.username, json.token)
 		);
-		// .then(json => console.log(json))
+	
 	};
 
 	render() {

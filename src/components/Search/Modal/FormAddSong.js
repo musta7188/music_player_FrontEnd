@@ -49,9 +49,7 @@ API.createSong(data).then(songObj => {
           onChange={handleChange}
           autoWidth
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
+
         {AllPlayList.map(playL => <MenuItem value={playL.id}>{playL.name}</MenuItem> )}
           
         </Select>

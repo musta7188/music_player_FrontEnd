@@ -59,9 +59,7 @@ const getPlaylists = (token) => {
 };
 
 const deletePlaylist = (id) => {
-	// return get(`${createPlaylistURL}/${id}`, token, {
-	// 	method: "DELETE"
-  // });
+
   fetch(`${createPlaylistURL}/${id}`, { method: "DELETE"})
 };
 
