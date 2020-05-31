@@ -99,7 +99,7 @@ export default function SignUpForm({ handleChange, handleSubmit }) {
 					</Button>
 					<Grid container justify="flex-end">
 						<Grid item>
-							<Link to="/log-in" variant="body2">
+							<Link to="/" variant="body2">
 								Already have an account? Sign in
 							</Link>
 

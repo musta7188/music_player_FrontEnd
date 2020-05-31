@@ -9,7 +9,7 @@ function PlaylistShow({ match }) {
     API.getSelectedPlaylist(match.params.id).then((playlistObj) =>
       setPlaylistSongs(playlistObj)
     );
-  });
+  },[]);
 
   return (
     <div>

@@ -36,7 +36,7 @@ function Header(props) {
             </Hidden>
             <Grid item xs />
             <Grid item>
-              <Link to="/log-in" onClick={logOut} className={classes.link} variant="body2">
+              <Link to="/" onClick={logOut} className={classes.link} variant="body2">
                Log Out
               </Link>
               

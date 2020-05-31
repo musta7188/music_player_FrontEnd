@@ -1,9 +1,9 @@
 import React from "react";
 import "./App.css";
-import Login from "./Login";
+import Login from "./components/Authentication/Login";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import API from "./API";
-import Signup from "./Signup";
+import Signup from "./components/Authentication/Signup";
 import AllSongs from "./APIs/AllSongs";
 import { connect } from "react-redux";
 import HomePage from "./components/HomePage/HomePage";
@@ -24,7 +24,10 @@ class App extends React.Component {
   }
 
   getUserPlaylist = () => {
-    API.getPlaylists(localStorage.token).then( (obj) => this.props.getPlaylist(obj));
+    if(localStorage.token){
+    API.getPlaylists(localStorage.token).then( (obj) => {
+      debugger
+      this.props.getPlaylist(obj)});}
   }
 
   checkToken = () => {
@@ -41,6 +44,7 @@ class App extends React.Component {
     });
 
     localStorage.token = token;
+    this.props.history.push("/songs")
   };
 
   logOut = () => {
@@ -77,7 +81,7 @@ class App extends React.Component {
             />
             <Route
               exact
-              path="/log-in"
+              path="/"
               component={() => <Login logIn={this.logIn} />}
             />
           </>
