@@ -14,105 +14,104 @@ import Login from "./Login";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 function Copyright() {
-	return (
-		<Typography variant="body2" color="textSecondary" align="center">
-			{"Copyright © "}
-			{/* <Link color="inherit" href="https://material-ui.com/"> */}
-			Your Website
-			{/* </Link>{' '} */}
-			{new Date().getFullYear()}
-			{"."}
-		</Typography>
-	);
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {"Copyright © "}
+      {/* <Link color="inherit" href="https://material-ui.com/"> */}
+      Your Website
+      {/* </Link>{' '} */}
+      {new Date().getFullYear()}
+      {"."}
+    </Typography>
+  );
 }
 
 const useStyles = makeStyles((theme) => ({
-	paper: {
-		marginTop: theme.spacing(8),
-		display: "flex",
-		flexDirection: "column",
-		alignItems: "center",
-	},
-	avatar: {
-		margin: theme.spacing(1),
-		backgroundColor: theme.palette.secondary.main,
-	},
-	form: {
-		width: "100%",
-		marginTop: theme.spacing(3),
-	},
-	submit: {
-		margin: theme.spacing(3, 0, 2),
-	},
+  paper: {
+    marginTop: theme.spacing(8),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: "100%",
+    marginTop: theme.spacing(3),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
 }));
 
 export default function SignUpForm({ handleChange, handleSubmit }) {
-	const classes = useStyles();
+  const classes = useStyles();
 
-	return (
-		<Container component="main" maxWidth="xs">
-			<CssBaseline />
-			<div className={classes.paper}>
-				<Avatar className={classes.avatar}>
-					<LockOutlinedIcon />
-				</Avatar>
-				<Typography component="h1" variant="h5">
-					Sign up
-				</Typography>
-				<form onSubmit={handleSubmit} className={classes.form} noValidate>
-					<Grid container spacing={2}>
-						<Grid item xs={12}>
-							<TextField
-								variant="outlined"
-								required
-								fullWidth
-								id="username"
-								label="Username"
-								name="username"
-								onChange={handleChange}
-								autoComplete="username"
-							/>
-						</Grid>
-						<Grid item xs={12}>
-							<TextField
-								variant="outlined"
-								required
-								fullWidth
-								name="password"
-								onChange={handleChange}
-								label="Password"
-								type="password"
-								id="password"
-								autoComplete="current-password"
-							/>
-						</Grid>
-						
-					</Grid>
-					<Button
-						type="submit"
-						fullWidth
-						variant="contained"
-						color="primary"
-						className={classes.submit}
-					>
-						Sign Up
-					</Button>
-					<Grid container justify="flex-end">
-						<Grid item>
-							<Link to="/" variant="body2">
-								Already have an account? Sign in
-							</Link>
+  return (
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign up
+        </Typography>
+        <form onSubmit={handleSubmit} className={classes.form} noValidate>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="username"
+                label="Username"
+                name="username"
+                onChange={handleChange}
+                autoComplete="username"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="password"
+                onChange={handleChange}
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+              />
+            </Grid>
+          </Grid>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Sign Up
+          </Button>
+          <Grid container justify="flex-end">
+            <Grid item>
+              <Link to="/" variant="body2">
+                Already have an account? Sign in
+              </Link>
 
-							<Router>
-								<Route exact path="/log-in" component={() => <Login />} />
-							</Router>
-						</Grid>
-					</Grid>
-				</form>
-			</div>
-			<Box mt={5}>
-				<Copyright />
-			</Box>
-		</Container>
-	);
+              <Router>
+                <Route exact path="/log-in" component={() => <Login />} />
+              </Router>
+            </Grid>
+          </Grid>
+        </form>
+      </div>
+      <Box mt={5}>
+        <Copyright />
+      </Box>
+    </Container>
+  );
 }

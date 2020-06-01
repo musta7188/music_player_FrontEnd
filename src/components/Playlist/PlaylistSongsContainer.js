@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
 import SongCard from "../AllSongsHomePage/SongCard"
 import useStyles from "../AllSongsHomePage/StyleContainerComponents/SongContainerStyle";
 import Grid from "@material-ui/core/Grid";
