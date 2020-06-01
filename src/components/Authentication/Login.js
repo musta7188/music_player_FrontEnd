@@ -1,5 +1,5 @@
 import React from "react";
-import API from "../../API";
+import API from "../../APIs/API";
 import LoginForm from "./LoginForm";
 import { withRouter } from "react-router-dom";
 
@@ -20,8 +20,16 @@ class Login extends React.Component {
 	handleSubmit = (e) => {
 		e.preventDefault();
 
-		API.logIn(this.state).then((json) =>
-			this.props.logIn(json.username, json.token)
+		API.logIn(this.state).then((data) =>
+			{
+				if(data.error){
+					alert(data.error)
+				} else {
+				this.props.logIn(data.username, data.token)
+				}
+
+			}
+			// 
 		);
 	
 	};

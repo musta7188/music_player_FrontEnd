@@ -1,7 +1,7 @@
 import React from "react";
 import CreatePlaylist from "./StyleComponent/CreatePlaylist";
 import PlaylistsStyle from "./StyleComponent/PlaylistsStyle";
-import API from "../../../src/API";
+import API from "../../APIs/API";
 import {connect}  from 'react-redux'
 
 

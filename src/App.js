@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import Login from "./components/Authentication/Login";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import API from "./API";
+import API from "./APIs/API";
 import Signup from "./components/Authentication/Signup";
 import AllSongs from "./APIs/AllSongs";
 import { connect } from "react-redux";
@@ -26,7 +26,7 @@ class App extends React.Component {
   getUserPlaylist = () => {
     if(localStorage.token){
     API.getPlaylists(localStorage.token).then( (obj) => {
-      debugger
+
       this.props.getPlaylist(obj)});}
   }
 

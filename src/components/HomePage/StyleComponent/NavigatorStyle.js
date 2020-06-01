@@ -15,7 +15,7 @@ const styles = (theme) => ({
     color: 'white',
     '&:hover,&:focus': {
       ///hover color 
-      backgroundColor: 'red',
+      backgroundColor: '#718321',
     },
   },
   itemCategory: {
@@ -30,7 +30,7 @@ const styles = (theme) => ({
     color: theme.palette.common.white,
   },
   itemActiveItem: {
-    color: 'blue',
+    color: '#08A9FF',
   },
   itemPrimary: {
     fontSize: 'inherit',

@@ -1,5 +1,5 @@
 import React from "react";
-import API from "../../API";
+import API from "../../APIs/API";
 import SignupForm from "./SignupForm";
 import { withRouter } from "react-router-dom";
 
@@ -19,10 +19,14 @@ class Signup extends React.Component {
 	};
 	handleSubmit = (e) => {
 		e.preventDefault();
-		
-		API.signUp(this.state)
-	    //API.logIn(this.state.username, this.state.password_digest).then(json => console.log(json))
-        .then((json) => this.props.logIn(json.username, json.token));
+
+		API.signUp(this.state).then((data) => {
+			if(data.error){
+				alert(data.error[0])
+			} else{
+			this.props.logIn(data.username, data.token)
+			}
+		});
 	};
 
 	render() {

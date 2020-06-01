@@ -6,7 +6,7 @@ let theme = createMuiTheme({
     primary: {
       light: '#63ccff',
       ///top nav bar background
-      main: 'rgb(101, 166, 145)',
+      main: '#062B51',
       dark: '#006db3',
     },
   },
@@ -36,8 +36,9 @@ theme = {
   ...theme,
   overrides: {
     MuiDrawer: {
+      ///background long side let nav barr
       paper: {
-        backgroundColor: 'rgb(101, 166, 145)',
+        backgroundColor: '#062B51',
       },
     },
     MuiButton: {

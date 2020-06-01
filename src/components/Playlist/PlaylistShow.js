@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PlaylistSongsContainer from "./PlaylistSongsContainer";
-import API from "../../API";
+import API from "../../APIs/API";
 // make a functional component?
 function PlaylistShow({ match }) {
   const [playlistSongs, setPlaylistSongs] = useState(null);

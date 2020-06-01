@@ -50,7 +50,6 @@ function PlaylistsStyle(props) {
   const classes = useStyles();
 
   const cards = playlistData;
-  debugger
   return (
     <React.Fragment>
       
