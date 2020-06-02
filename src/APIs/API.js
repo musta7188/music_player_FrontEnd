@@ -1,10 +1,10 @@
-const baseURL = "http://localhost:3001";
-const logInURL = `${baseURL}/log-in`;
-const validateURL = `${baseURL}/validate`;
-const createUserURL = `${baseURL}/users`;
-const createPlaylistURL = `${baseURL}/playlists`;
-const createSongUrl = `${baseURL}/songs`
-const createPlayListSongLink = `${baseURL}/playlist_songs`
+const baseURL = "https://music-player-backend.herokuapp.com/";
+const logInURL = `${baseURL}log-in`;
+const validateURL = `${baseURL}validate`;
+const createUserURL = `${baseURL}users`;
+const createPlaylistURL = `${baseURL}playlists`;
+const createSongUrl = `${baseURL}songs`
+const createPlayListSongLink = `${baseURL}playlist_songs`
 
 
 const post = (url, data, token) => {
@@ -65,7 +65,7 @@ const deletePlaylist = (id) => {
 
 
 const getSelectedPlaylist = (id) => {
-	return fetch(`http://localhost:3001/playlists/${id}`)
+	return fetch(`${baseURL}/playlists/${id}`)
 	 .then(resp => resp.json())
 	 
  
