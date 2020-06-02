@@ -1,13 +1,12 @@
-import { CardActionArea } from "@material-ui/core";
 
 const initialState = {
   songs: [],
   playingSong: "",
   selectedSongs: null,
-  playList:[]
+  playList:[],
+  selectedPlaylist: [],
+  selectedPlaylistSongs: []
 };
-
-
 
 const reducer = (state = initialState, action) => {
 
@@ -61,13 +60,19 @@ const reducer = (state = initialState, action) => {
        ...state,
        playList: state.playList
     }
-  }
-  if (action.type === "DELETE_SONG"){
-    debugger
+  }if(action.type === "ADD_SELECTED_PLAYLIST"){
+ 
     return{
       ...state,
-      playList: state.playList.filter( p => p.id == action.payload.playlistId)[0].songs.filter(s => s.id != action.payload.songId), 
+      selectedPlaylist: action.payload.playlist,
+      selectedPlaylistSongs: action.payload.playlist.songs
+    }
+  }
+  if (action.type === "DELETE_SONG"){
+
+    return{
       ...state,
+        selectedPlaylistSongs: state.selectedPlaylistSongs.filter(s => s.id != action.payload.songId)
     }
   }
   return state;
@@ -76,17 +81,3 @@ const reducer = (state = initialState, action) => {
 export default reducer;
 
 
-
-// const setState = (actionType, propertyState) => {
-//   deb
-//   if (action.type === actionType) {
-//     return {
-//       ...state,
-//       propertyState
-//     };
-//   }
-// };
-
-
-
-// setState("SET_SONGS", {songs: action.payload.songs})

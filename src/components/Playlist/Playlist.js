@@ -56,7 +56,6 @@ class Playlist extends React.Component {
 					handleChange={this.handleChange}
 					handleSubmit={this.handleSubmit}
 				/>
-				
 				<PlaylistsStyle playlistData={this.props.AllPlayList} removePlaylist={this.removePlaylist}  />
 			</div>
 		
