@@ -4,7 +4,7 @@ import Login from "./components/Authentication/Login";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import API from "./APIs/API";
 import Signup from "./components/Authentication/Signup";
-import AllSongs from "./APIs/AllSongs";
+import { AllSongs } from "./APIs/API";
 import { connect } from "react-redux";
 import HomePage from "./components/HomePage/HomePage";
 import { withRouter } from "react-router-dom";
@@ -24,22 +24,21 @@ class App extends React.Component {
   }
 
   getUserPlaylist = () => {
-    if(localStorage.token){
-    API.getPlaylists(localStorage.token).then( (obj) => {
-
-      this.props.getPlaylist(obj)});}
-  }
+    if (localStorage.token) {
+      API.getPlaylists(localStorage.token).then((obj) => {
+        this.props.getPlaylist(obj);
+      });
+    }
+  };
 
   checkToken = () => {
     if (localStorage.token) {
       API.validate(localStorage.token).then((json) => {
         this.setState({
-          username: json.username
+          username: json.username,
         });
-    
+
         localStorage.token = json.token;
-      
-      
       });
     }
   };
@@ -50,7 +49,7 @@ class App extends React.Component {
     });
 
     localStorage.token = token;
-    this.props.history.push("/songs")
+    this.props.history.push("/songs");
   };
 
   logOut = () => {
@@ -58,7 +57,7 @@ class App extends React.Component {
       username: null,
     });
     localStorage.removeItem("token");
-    this.props.history.push("sign-up")
+    this.props.history.push("sign-up");
   };
 
   render() {
@@ -81,9 +80,7 @@ class App extends React.Component {
             <Route
               exact
               path="/sign-up"
-              component={() => (
-                <Signup logIn={this.logIn} />
-              )}
+              component={() => <Signup logIn={this.logIn} />}
             />
             <Route
               exact
@@ -99,8 +96,10 @@ class App extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getSongs: (songs) => dispatch({ type: "SET_SONGS", payload: { songs: songs } }),
-    getPlaylist: (playlist) => dispatch({type: 'SET_PLAYLIST', payload:{playlist: playlist}})
+    getSongs: (songs) =>
+      dispatch({ type: "SET_SONGS", payload: { songs: songs } }),
+    getPlaylist: (playlist) =>
+      dispatch({ type: "SET_PLAYLIST", payload: { playlist: playlist } }),
   };
 };
 

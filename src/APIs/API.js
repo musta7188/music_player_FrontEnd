@@ -72,10 +72,11 @@ const getSelectedPlaylist = (id) => {
 	return fetch(`${baseURL}/playlists/${id}`)
 	 .then(resp => resp.json())
 	 
- 
  }
 
-
+ export const AllSongs = () => {
+  return fetch(allSongUrl).then((resp) => resp.json());
+}
 
 export default {
 	logIn,
@@ -87,6 +88,7 @@ export default {
 	createSong,
 	createPlayListSong,
 	getSelectedPlaylist,
-	deleteSong
+	deleteSong,
+
 
 };
