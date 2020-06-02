@@ -62,7 +62,14 @@ const reducer = (state = initialState, action) => {
        playList: state.playList
     }
   }
-///action.payload.playlistID ///action.payload.song
+  if (action.type === "DELETE_SONG"){
+    debugger
+    return{
+      ...state,
+      playList: state.playList.filter( p => p.id == action.payload.playlistId)[0].songs.filter(s => s.id != action.payload.songId), 
+      ...state,
+    }
+  }
   return state;
 };
 

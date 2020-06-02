@@ -10,11 +10,11 @@ import useStyles from "./StyleContainerComponents/SongCardStyle";
 import { connect } from "react-redux";
 import StopIcon from "@material-ui/icons/Stop";
 import AddSongModal2 from './Modal/AddSongModal2'
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-
-
-function SongCard({ song, playingSong, songToPlay }) {
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import {deleteSong} from '../../APIs/API'
+function SongCard({ song, playingSong, songToPlay, IsPlaylist, removeSong }) {
+  debugger
+  
   const [play, setPlay] = useState(false);
   const [like, setLike] = useState(false);
 
@@ -27,6 +27,12 @@ function SongCard({ song, playingSong, songToPlay }) {
     setPlay(!play);
     songToPlay(play ? song.song_link : "");
   };
+
+  const handleDeleteSong = (id) =>{
+    debugger
+    deleteSong(id).then(song => console.log(song))
+    removeSong(id, IsPlaylist.id)
+  }
 
   return (
     <Card className={classes.root}>
@@ -52,7 +58,8 @@ function SongCard({ song, playingSong, songToPlay }) {
           </IconButton>
           <IconButton aria-label="like">
           <div onClick={() => setLike(!like)}>
-            {like ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+          {IsPlaylist?  <DeleteForeverIcon onClick={() => handleDeleteSong(song.id)} /> : "" }
+                 
             </div>
           </IconButton>
         </div>
@@ -71,6 +78,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     songToPlay: (link) =>
       dispatch({ type: "PLAY_SONG", payload: { link: link } }),
+      removeSong: (songId, playlistId) => dispatch({type: "DELETE_SONG", payload: {songId, playlistId}})
   };
 };
 

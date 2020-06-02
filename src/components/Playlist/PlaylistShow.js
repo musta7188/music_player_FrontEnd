@@ -5,17 +5,20 @@ import API from "../../APIs/API";
 function PlaylistShow({ match }) {
   const [playlistSongs, setPlaylistSongs] = useState(null);
 
+
+
   useEffect(() => {
     API.getSelectedPlaylist(match.params.id).then((playlistObj) =>
       setPlaylistSongs(playlistObj)
     );
   },[]);
 
+
   return (
     <div>
       <h1>{playlistSongs && playlistSongs.name}</h1>
 
-      {playlistSongs && <PlaylistSongsContainer songs={playlistSongs.songs} />}
+      {playlistSongs && <PlaylistSongsContainer playlist={playlistSongs} songs={playlistSongs.songs} />}
     </div>
   );
 }

@@ -5,7 +5,7 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 
-function PlaylistSongsContainer({ songs }) {
+function PlaylistSongsContainer({ songs, playlist }) {
   const songPerPage = 6;
 
   const [limit, setLimit] = useState(songPerPage);
@@ -33,7 +33,7 @@ function PlaylistSongsContainer({ songs }) {
         <Grid container justify="center" spacing={4}>
           {songs && songs.slice(startLimit, limit).map((song) => (
             <Grid key={song.id} item>
-              <SongCard song={song} />
+              <SongCard song={song} IsPlaylist={playlist} />
             </Grid>
           ))}
         </Grid>

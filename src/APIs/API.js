@@ -3,7 +3,7 @@ const logInURL = `${baseURL}log-in`;
 const validateURL = `${baseURL}validate`;
 const createUserURL = `${baseURL}users`;
 const createPlaylistURL = `${baseURL}playlists`;
-const createSongUrl = `${baseURL}songs`
+const allSongUrl = `${baseURL}songs`
 const createPlayListSongLink = `${baseURL}playlist_songs`
 
 
@@ -21,7 +21,7 @@ const post = (url, data, token) => {
 };
 
 const createSong = (data) => {
-return post(createSongUrl, data).then(resp => resp.json())
+return post(allSongUrl, data).then(resp => resp.json())
 }
 
 
@@ -63,6 +63,10 @@ const deletePlaylist = (id) => {
   fetch(`${createPlaylistURL}/${id}`, { method: "DELETE"})
 };
 
+export const deleteSong = (id) => {
+	debugger
+return	fetch(`${allSongUrl}/${id}`, { method: "DELETE"}).then(resp => resp.json())
+}
 
 const getSelectedPlaylist = (id) => {
 	return fetch(`${baseURL}/playlists/${id}`)
@@ -82,6 +86,7 @@ export default {
 	deletePlaylist,
 	createSong,
 	createPlayListSong,
-	getSelectedPlaylist
+	getSelectedPlaylist,
+	deleteSong
 
 };
