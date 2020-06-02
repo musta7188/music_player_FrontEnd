@@ -18,9 +18,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    debugger
     this.checkToken();
     AllSongs().then(this.props.getSongs);
-    this.getUserPlaylist();
+    this.getUserPlaylist()
   }
 
   getUserPlaylist = () => {
@@ -47,6 +48,7 @@ class App extends React.Component {
     this.setState({
       username,
     });
+    this.getUserPlaylist()
 
     localStorage.token = token;
     this.props.history.push("/songs");
@@ -56,8 +58,10 @@ class App extends React.Component {
     this.setState({
       username: null,
     });
+    this.props.getPlaylist([])
     localStorage.removeItem("token");
     this.props.history.push("sign-up");
+
   };
 
   render() {
@@ -85,7 +89,7 @@ class App extends React.Component {
             <Route
               exact
               path="/"
-              component={() => <Login logIn={this.logIn} />}
+              component={() => <Login getUserPlaylist={this.getUserPlaylist} logIn={this.logIn} />}
             />
           </>
         )}

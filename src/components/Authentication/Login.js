@@ -26,6 +26,7 @@ class Login extends React.Component {
           alert(data.error);
         } else {
           this.props.logIn(data.username, data.token);
+          this.props.getUserPlaylist()
         }
       }
       //
