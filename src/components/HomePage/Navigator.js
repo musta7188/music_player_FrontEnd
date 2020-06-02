@@ -18,9 +18,8 @@ import styles from "./StyleComponent/NavigatorStyle";
 function Navigator(props) {
   const { classes, ...other } = props;
 
-  const { handelSelection, username} = props
+  const { handelSelection, username } = props;
   const [active, setActive] = useState();
-
 
   useEffect(() => {
     const acutalPath = props.currentPath;
@@ -39,7 +38,6 @@ function Navigator(props) {
 
   const categories = [
     {
-      
       children: [
         {
           id: "Home Page",
@@ -47,7 +45,7 @@ function Navigator(props) {
           active: active === "Home Page" ? true : false,
         },
         {
-          ////capitalize 
+          ////capitalize
           id: "playlists",
           icon: <QueueMusicIcon />,
           active: active === "playlists" ? true : false,
@@ -62,18 +60,12 @@ function Navigator(props) {
   ];
 
   const handleClick = (selection) => {
-    
-
-  
-    handelSelection(selection)
-    return active != selection? setActive(selection): null
-  }
- 
+    handelSelection(selection);
+    return active != selection ? setActive(selection) : null;
+  };
 
   return (
-
     <Drawer variant="permanent" {...other}>
-
       <List disablePadding>
         <ListItem
           className={clsx(classes.firebase, classes.item, classes.itemCategory)}
@@ -89,7 +81,7 @@ function Navigator(props) {
               primary: classes.itemPrimary,
             }}
           >
-             {`Welcome ${username}`}
+            {`Welcome ${username}`}
           </ListItemText>
         </ListItem>
         {categories.map(({ id, children }) => (
