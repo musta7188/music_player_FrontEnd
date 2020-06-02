@@ -64,7 +64,7 @@ const deletePlaylist = (id) => {
 };
 
 export const deleteSong = (id) => {
-	debugger
+
 return	fetch(`${allSongUrl}/${id}`, { method: "DELETE"}).then(resp => resp.json())
 }
 

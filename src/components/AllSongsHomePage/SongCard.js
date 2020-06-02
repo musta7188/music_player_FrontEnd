@@ -9,12 +9,10 @@ import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import useStyles from "./StyleContainerComponents/SongCardStyle";
 import { connect } from "react-redux";
 import StopIcon from "@material-ui/icons/Stop";
-import AddSongModal2 from './Modal/AddSongModal2'
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
-import {deleteSong} from '../../APIs/API'
-function SongCard({ song, playingSong, songToPlay, IsPlaylist, removeSong }) {
-  debugger
-  
+import AddSongModal2 from "./Modal/AddSongModal2";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import { deleteSong } from "../../APIs/API";
+function SongCard({ song, playingSong, songToPlay, playlist, removeSong }) {
   const [play, setPlay] = useState(false);
   const [like, setLike] = useState(false);
 
@@ -28,11 +26,10 @@ function SongCard({ song, playingSong, songToPlay, IsPlaylist, removeSong }) {
     songToPlay(play ? song.song_link : "");
   };
 
-  const handleDeleteSong = (id) =>{
-    debugger
-    deleteSong(id).then(song => console.log(song))
-    removeSong(id, IsPlaylist.id)
-  }
+  const handleDeleteSong = (id) => {
+    deleteSong(id).then((song) => console.log(song));
+    removeSong(id);
+  };
 
   return (
     <Card className={classes.root}>
@@ -47,7 +44,11 @@ function SongCard({ song, playingSong, songToPlay, IsPlaylist, removeSong }) {
         </CardContent>
         <div className={classes.controls}>
           <IconButton aria-label="add song to playlist">
-            <AddSongModal2 song={song}/>
+            {playlist ? (
+              <DeleteForeverIcon onClick={() => handleDeleteSong(song.id)} />
+            ) : (
+              <AddSongModal2 song={song} />
+            )}
           </IconButton>
           <IconButton aria-label="play/pause">
             {playingSong === song.song_link ? (
@@ -57,10 +58,7 @@ function SongCard({ song, playingSong, songToPlay, IsPlaylist, removeSong }) {
             )}
           </IconButton>
           <IconButton aria-label="like">
-          <div onClick={() => setLike(!like)}>
-          {IsPlaylist?  <DeleteForeverIcon onClick={() => handleDeleteSong(song.id)} /> : "" }
-                 
-            </div>
+            <div onClick={() => setLike(!like)}></div>
           </IconButton>
         </div>
       </div>
@@ -78,7 +76,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     songToPlay: (link) =>
       dispatch({ type: "PLAY_SONG", payload: { link: link } }),
-      removeSong: (songId, playlistId) => dispatch({type: "DELETE_SONG", payload: {songId, playlistId}})
+    removeSong: (songId) =>
+      dispatch({ type: "DELETE_SONG", payload: { songId } }),
   };
 };
 

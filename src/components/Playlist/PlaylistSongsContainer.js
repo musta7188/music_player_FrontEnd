@@ -4,8 +4,10 @@ import useStyles from "../AllSongsHomePage/StyleContainerComponents/SongContaine
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
+import { connect } from "react-redux";
 
-function PlaylistSongsContainer({ songs, playlist }) {
+function PlaylistSongsContainer({ songs, playlist}) {
+  debugger
   const songPerPage = 6;
 
   const [limit, setLimit] = useState(songPerPage);
@@ -33,7 +35,7 @@ function PlaylistSongsContainer({ songs, playlist }) {
         <Grid container justify="center" spacing={4}>
           {songs && songs.slice(startLimit, limit).map((song) => (
             <Grid key={song.id} item>
-              <SongCard song={song} IsPlaylist={playlist} />
+              <SongCard song={song} playlist={playlist} />
             </Grid>
           ))}
         </Grid>
@@ -54,6 +56,12 @@ function PlaylistSongsContainer({ songs, playlist }) {
   );
 }
 
+const mapStateToProps = state => {
+  return {
+    songs: state.selectedPlaylistSongs,
+    playlist: state.selectedPlaylist
+  }
+}
 
 
-export default PlaylistSongsContainer;
+export default connect(mapStateToProps) (PlaylistSongsContainer);
