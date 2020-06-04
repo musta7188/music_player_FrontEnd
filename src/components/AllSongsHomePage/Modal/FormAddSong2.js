@@ -7,7 +7,7 @@ import Select from "@material-ui/core/Select";
 import { connect } from "react-redux";
 import API from "../../../APIs/API";
 
-function FormAddSong2({ AllPlayList, song, removeSong }) {
+function FormAddSong2({ AllPlayList, song, removeSong, setOpen }) {
   const [playList, setPlayList] = React.useState("");
 
   const handleChange = (event) => {
@@ -16,6 +16,7 @@ function FormAddSong2({ AllPlayList, song, removeSong }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setOpen(false)
     const data = {
       title: song.title,
       artist: song.artist,
