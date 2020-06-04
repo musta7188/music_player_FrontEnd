@@ -46,7 +46,7 @@ function AddSongModal({song}) {
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <p>Select a Playlist</p>
-      <FormAddSong song={song} />
+      <FormAddSong  setOpen={setOpen} song={song} />
       
     </div>
   );

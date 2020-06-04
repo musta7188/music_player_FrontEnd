@@ -9,7 +9,7 @@ import API from '../../../APIs/API'
 
 
 
-function FormAddSong({AllPlayList, song, removeSong}) {
+function FormAddSong({AllPlayList, song, removeSong,  setOpen}) {
   const [playList, setPlayList] = React.useState("");
 
   const handleChange = (event) => {
@@ -18,6 +18,7 @@ function FormAddSong({AllPlayList, song, removeSong}) {
 
 const handleSubmit = (e) => {
   e.preventDefault()
+  setOpen(false)
  const  data = {
     title: song.title,
     artist: song.artist.name,
