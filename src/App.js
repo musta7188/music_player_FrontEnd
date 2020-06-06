@@ -18,7 +18,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    debugger
+
     this.checkToken();
     AllSongs().then(this.props.getSongs);
     this.getUserPlaylist()

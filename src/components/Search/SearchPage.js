@@ -4,7 +4,7 @@ import SearchContainer from "./SearchContainer";
 import { connect } from "react-redux";
 import MicOffIcon from "@material-ui/icons/MicOff";
 import MicIcon from "@material-ui/icons/Mic";
-
+import {searchSong} from '../../APIs/API'
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
 
@@ -21,17 +21,12 @@ function SearchPage(props) {
 
   const [listening, setListening] = useState(false);
 
-  ///fetch from the api songs, artist or album matching the value of the input
-  const getSearchedItems = () => {
-    fetch(`https://deezerdevs-deezer.p.rapidapi.com/search/track?q=${value}`, {
-      method: "GET",
-      headers: {
-        "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
-        "x-rapidapi-key": "178f0cd1fbmsh29f81f40b999084p1211d1jsneb0d0e6e0aaf",
-      },
-    })
-      .then((resp) => resp.json())
-      .then((obj) => SongsSearched(obj.data));
+  const getSearchedItems = (value) => {
+
+    searchSong(value).then((obj) => {
+
+      SongsSearched(obj.data)
+    });
   };
 
   const handleListen = () => {
@@ -44,7 +39,7 @@ function SearchPage(props) {
 
   const handelChance = (value) => {
     setValue(value);
-    getSearchedItems();
+    getSearchedItems(value);
   };
 
   return (

@@ -5,7 +5,14 @@ const createUserURL = `${baseURL}users`;
 const createPlaylistURL = `${baseURL}playlists`;
 const allSongUrl = `${baseURL}songs`
 const createPlayListSongLink = `${baseURL}playlist_songs`
-
+const DEEZER_URL  = 'https://deezerdevs-deezer.p.rapidapi.com/search/track?q='
+const DEEZER_API_KEY = {
+	method: "GET",
+	headers: {
+		"x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+		"x-rapidapi-key": "178f0cd1fbmsh29f81f40b999084p1211d1jsneb0d0e6e0aaf",
+	},
+}
 
 const post = (url, data, token) => {
 	const configObject = {
@@ -24,7 +31,11 @@ const createSong = (data) => {
 return post(allSongUrl, data).then(resp => resp.json())
 }
 
+export const searchSong = (value) => {
 
+return fetch(`${DEEZER_URL}${value}`, DEEZER_API_KEY )
+.then((resp) => resp.json())
+}
 
 
 
@@ -41,6 +52,7 @@ const validate = (token) => {
 };
 
 const logIn = (data) => {
+
 	return post(logInURL, data).then((response) => response.json());
 };
 

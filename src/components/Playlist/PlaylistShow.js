@@ -11,7 +11,7 @@ function PlaylistShow({ match, setSelectedPlaylist }) {
     API.getSelectedPlaylist(match.params.id).then((playlistObj) => {
       setPlaylist(playlistObj);
       setSelectedPlaylist(playlistObj);
-      debugger;
+
     });
   }, []);
 

@@ -7,7 +7,7 @@ import ButtonGroup from "@material-ui/core/ButtonGroup";
 import { connect } from "react-redux";
 
 function PlaylistSongsContainer({ songs, playlist}) {
-  debugger
+
   const songPerPage = 6;
 
   const [limit, setLimit] = useState(songPerPage);
