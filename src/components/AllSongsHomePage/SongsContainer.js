@@ -26,6 +26,8 @@ function SongsContainer({ songs }) {
   };
 
   return (
+    <>
+    <h1> Our Recommended songs</h1>
     <Grid container className={classes.root} spacing={3}>
       <Grid item xs={15}>
         <Grid container justify="center" spacing={4}>
@@ -49,6 +51,7 @@ function SongsContainer({ songs }) {
         </div>
       </Grid>
     </Grid>
+    </>
   );
 }
 

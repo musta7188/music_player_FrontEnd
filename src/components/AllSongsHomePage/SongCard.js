@@ -22,10 +22,14 @@ function SongCard({ song, playingSong, songToPlay, playlist, removeSong }) {
   ////method  set the play song state to true or false to render the right icon and if true send the the redux state the link of the song else send empty string
   ////stopping  the song
   const handelPlay = () => {
-    setPlay(!play);
-    songToPlay(play ? song.song_link : "");
+    setPlay(true);
+    songToPlay(song.song_link);
   };
 
+  const handleStop = () => {
+    setPlay(false)
+    songToPlay("");
+  }
   const handleDeleteSong = (id) => {
     deleteSong(id).then((song) => console.log(song));
     removeSong(id);
@@ -52,7 +56,7 @@ function SongCard({ song, playingSong, songToPlay, playlist, removeSong }) {
           </IconButton>
           <IconButton aria-label="play/pause">
             {playingSong === song.song_link ? (
-              <StopIcon onClick={handelPlay} />
+              <StopIcon onClick={handleStop} />
             ) : (
               <PlayArrowIcon onClick={handelPlay} />
             )}

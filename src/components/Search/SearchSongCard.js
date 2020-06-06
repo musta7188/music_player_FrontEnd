@@ -24,8 +24,13 @@ function SearchSongCard({ song, playingSong, songToPlay }) {
   ////stopping  the song
   const handelPlay = () => {
     setPlay(!play);
-    songToPlay(play ? song.preview : "");
+    songToPlay(song.preview);
   };
+
+  const handelStop = () => {
+    setPlay(false)
+    songToPlay("")
+  }
 
   return (
     <Card className={classes.root}>
@@ -44,9 +49,9 @@ function SearchSongCard({ song, playingSong, songToPlay }) {
           </IconButton>
           <IconButton aria-label="play/pause">
             {playingSong === song.preview ? (
-              <StopIcon onClick={() => handelPlay()} />
+              <StopIcon onClick={handelStop} />
             ) : (
-              <PlayArrowIcon onClick={() => handelPlay()} />
+              <PlayArrowIcon onClick={handelPlay} />
             )}
           </IconButton>
           <IconButton aria-label="like">
