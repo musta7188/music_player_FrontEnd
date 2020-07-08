@@ -10,8 +10,11 @@ import HomePage from "./components/HomePage/HomePage";
 import { withRouter } from "react-router-dom";
 
 
-function App ({getSongs, setUser, getPlaylist, props, username}){
+function App (props){
   
+  ////functions that set the dashboard sons the current user playlist 
+  ////
+  const {getSongs, setUser, getPlaylist, username} = props
 
   useEffect(() => {
 
@@ -50,7 +53,7 @@ function App ({getSongs, setUser, getPlaylist, props, username}){
   const logOut = () => {
     setUser(null)
     
-    props.getPlaylist([])
+    getPlaylist([])
     localStorage.removeItem("token");
     props.history.push("sign-up");
 
