@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import Login from "./components/Authentication/Login";
 import { BrowserRouter as Router, Route } from "react-router-dom";
@@ -9,63 +9,55 @@ import { connect } from "react-redux";
 import HomePage from "./components/HomePage/HomePage";
 import { withRouter } from "react-router-dom";
 
-class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      username: null,
-    };
-  }
 
-  componentDidMount() {
+function App ({getSongs, setUser, getPlaylist, props, username}){
+  
 
-    this.checkToken();
-    AllSongs().then(this.props.getSongs);
-    this.getUserPlaylist()
-  }
+  useEffect(() => {
 
-  getUserPlaylist = () => {
+   checkToken();
+    AllSongs().then(getSongs);
+    getUserPlaylist()
+  },)
+
+  const getUserPlaylist = () => {
     if (localStorage.token) {
       API.getPlaylists(localStorage.token).then((obj) => {
-        this.props.getPlaylist(obj);
+        getPlaylist(obj);
       });
     }
   };
 
-  checkToken = () => {
+  const checkToken = () => {
     if (localStorage.token) {
       API.validate(localStorage.token).then((json) => {
-        this.setState({
-          username: json.username,
-        });
+        setUser(json.username)
 
         localStorage.token = json.token;
       });
     }
   };
 
-  logIn = (username, token) => {
-    this.setState({
-      username,
-    });
-    this.getUserPlaylist()
+  const logIn = (username, token) => {
+    setUser(username)
+   
+    getUserPlaylist()
 
     localStorage.token = token;
-    this.props.history.push("/songs");
+    props.history.push("/songs");
   };
 
-  logOut = () => {
-    this.setState({
-      username: null,
-    });
-    this.props.getPlaylist([])
+  const logOut = () => {
+    setUser(null)
+    
+    props.getPlaylist([])
     localStorage.removeItem("token");
-    this.props.history.push("sign-up");
+    props.history.push("sign-up");
 
   };
 
-  render() {
-    const { username } = this.state;
+
+
     return (
       <div className="App">
         {username ? (
@@ -74,8 +66,8 @@ class App extends React.Component {
             render={(props) => (
               <HomePage
                 {...props}
-                logOut={this.logOut}
-                username={this.state.username}
+                logOut={logOut}
+                username={username}
               />
             )}
           />
@@ -84,19 +76,19 @@ class App extends React.Component {
             <Route
               exact
               path="/sign-up"
-              component={() => <Signup logIn={this.logIn} />}
+              component={() => <Signup logIn={logIn} />}
             />
             <Route
               exact
               path="/"
-              component={() => <Login getUserPlaylist={this.getUserPlaylist} logIn={this.logIn} />}
+              component={() => <Login getUserPlaylist={getUserPlaylist} logIn={logIn} />}
             />
           </>
         )}
       </div>
     );
   }
-}
+
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -104,7 +96,15 @@ const mapDispatchToProps = (dispatch) => {
       dispatch({ type: "SET_SONGS", payload: { songs: songs } }),
     getPlaylist: (playlist) =>
       dispatch({ type: "SET_PLAYLIST", payload: { playlist: playlist } }),
+      setUser: user => dispatch({type: 'SET_USER', payload: {user}})
   };
 };
 
-export default connect(null, mapDispatchToProps)(withRouter(App));
+
+const mapStateToProps = (state) => {
+  return {
+    username: state.username,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(App));

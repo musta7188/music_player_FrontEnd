@@ -5,10 +5,19 @@ const initialState = {
   selectedSongs: null,
   playList:[],
   selectedPlaylist: [],
-  selectedPlaylistSongs: []
+  selectedPlaylistSongs: [],
+  username: null
 };
 
 const reducer = (state = initialState, action) => {
+
+  if(action.type === 'SET_USER'){
+    return {
+      ...state,
+      username: action.payload.user
+      
+    }
+  }
 
 
   if (action.type === "SET_SONGS") {

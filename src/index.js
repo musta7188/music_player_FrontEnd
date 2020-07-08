@@ -8,7 +8,7 @@ import {createStore} from 'redux'
 import reducer from './reducer'
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-
+///create reducer to store the state (redux)
 const store = createStore(reducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && 
   window.__REDUX_DEVTOOLS_EXTENSION__())
